@@ -9,12 +9,18 @@ public class Conexao {
 
     /*
     Default env:
-    DATABASE_HOST=localhost;DATABASE_PORT=5432;DATABASE_NAME=tarefadb;DATABASE_USERNAME=postgres;DATABASE_PASSWORD=postgres
+    DATABASE_HOST=localhost;DATABASE_PORT=5432;DATABASE_NAME=tarefa_db;DATABASE_USERNAME=postgres;DATABASE_PASSWORD=postgres
     */
 
     /*
-    CREATE TABLE tarefa_tbl(ID INT PRIMARY KEY NOT NULL, TEXTO TEXT NOT NULL,PRIORIDADE INTEGER NOT NULL, DATA_CADASTRO DATE NOT NULL);
     https://www.commandprompt.com/education/how-to-create-a-postgresql-database-in-docker/
+
+    psql -h localhost -U postgres
+    CREATE DATABASE tarefa_db;
+    \l
+    \c tarefa_db;
+    CREATE TABLE tarefa_tbl(ID SERIAL PRIMARY KEY NOT NULL, TEXTO TEXT NOT NULL, PRIORIDADE INTEGER NOT NULL, DATA_CADASTRO BIGINT NOT NULL);
+
      */
     public static Connection getConnection() throws SQLException, URISyntaxException {
         String dbUri = System.getenv("DATABASE_HOST");

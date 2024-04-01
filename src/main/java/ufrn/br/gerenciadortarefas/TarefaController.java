@@ -5,6 +5,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
 
 @Controller
 public class TarefaController {
@@ -16,13 +19,21 @@ public class TarefaController {
         String prioridade = request.getParameter("prioridade");
 
         Tarefa tarefa = new Tarefa();
-        tarefa.setId(1);
         tarefa.setTexto(texto);
         tarefa.setPrioridade(Integer.parseInt(prioridade));
 
         TarefaDao tarefaDao = new TarefaDao();
 
         tarefaDao.cadastrarTarefa(tarefa);
-        System.out.println("Cadastro passou");
+    }
+
+    @RequestMapping(value = "/gettarefa", method = RequestMethod.GET)
+    public void doGetTarefa(HttpServletRequest request, HttpServletResponse response, @RequestParam(name = "id") Integer id) throws IOException {
+
+        TarefaDao tarefaDao = new TarefaDao();
+
+        Tarefa tarefa = tarefaDao.getTarefaById(id);
+
+        response.getWriter().println(tarefa.toString());
     }
 }

@@ -98,12 +98,11 @@ public class TarefaDao {
             connection = Conexao.getConnection();
 
             stmt = connection.prepareStatement(
-                    "insert into tarefa_tbl (id, texto, prioridade, data_cadastro) values (?, ?,?,?)");
+                    "insert into tarefa_tbl (texto, prioridade, data_cadastro) values (?,?,?)");
 
-            stmt.setInt(1, t.getId());
-            stmt.setString(2, t.getTexto());
-            stmt.setInt(3, t.getPrioridade());
-            stmt.setFloat(4, t.getDataCadastro().getTime());
+            stmt.setString(1, t.getTexto());
+            stmt.setInt(2, t.getPrioridade());
+            stmt.setFloat(3, t.getDataCadastro().getTime());
 
             stmt.executeUpdate();
             connection.close();
