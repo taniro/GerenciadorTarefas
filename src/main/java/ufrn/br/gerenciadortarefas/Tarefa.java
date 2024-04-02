@@ -24,6 +24,12 @@ public class Tarefa {
         this.dataCadastro = data;
     }
 
+    public Tarefa(String texto, int prioridade) {
+        this.texto = texto;
+        this.prioridade = prioridade;
+        this.dataCadastro = new Date();
+    }
+
     public String getTexto() {
         return texto;
     }
@@ -60,5 +66,9 @@ public class Tarefa {
                 ", prioridade=" + prioridade +
                 ", dataCadastro=" + dataCadastro +
                 '}';
+    }
+
+    public Date getData() {
+        return this.dataCadastro;
     }
 }
